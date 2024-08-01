@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import userAction from "../../redux/actions/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import IsMenu from "../menu/menuContainer";
-import SearchInput from "../../common/components/input/searchInput";
+import SearchInput from "../../common/baseComponents/input/searchInput";
 import "./serchFriend.scss";
 
 const { getInfo } = userAction;

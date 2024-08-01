@@ -3,8 +3,8 @@ import userAction from "../../redux/actions/user/userActions";
 import { Form, Image, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import ModalInfo from "../../components/modal/modalContainer";
-import { ButtonShowModal } from "../../common/components/button/buttonShowModal";
-import UserAvatar from "../../common/components/avatar/avatarUser";
+import { ButtonShowModal } from "../../common/baseComponents/button/buttonShowModal";
+import UserAvatar from "../../common/baseComponents/avatar/avatarUser";
 const { getInfo } = userAction;
 function InfoUser() {
   const [isModal, setIsModal] = useState(false);

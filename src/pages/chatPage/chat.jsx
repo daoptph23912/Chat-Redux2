@@ -5,7 +5,7 @@ import MsgChat from "../../components/message/contentsChat/messageContainer";
 import MsgSend from "../../components/message/textarea/textareContainer";
 import userAction from "../../redux/actions/user/userActions";
 import NoMessage from "../../components/message/contentsChat/noMessage";
-import FriendStatus from "../../common/components/avatar/avatarFriend";
+import FriendStatus from "../../common/baseComponents/avatar/avatarFriend";
 const { getMessages, sendMessage } = userAction;
 function Chat() {
   const [selectedFriend, setSelectedFriend] = useState(null);

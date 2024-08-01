@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import MessageItem from "./messageItem";
-import ScrollButton from "../../../common/components/button/buttonScroll";
+import ScrollButton from "../../../common/baseComponents/button/buttonScroll";
 
 const MsgChat = ({ messages, selectedFriend }) => {
   const [isScrolled, setIsScrolled] = useState(false);

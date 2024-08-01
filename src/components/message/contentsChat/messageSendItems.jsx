@@ -1,6 +1,6 @@
 import React from "react";
 import MessageContent from "./messageContent";
-import MessageTimestamp from "../../../common/components/time/timeMessage";
+import MessageTimestamp from "../../../common/baseComponents/time/timeMessage";
 import "../../../assets/styles/messageSendItem.scss";
 const SentMessageItem = ({ msg, selectedFriend }) => {
   return (

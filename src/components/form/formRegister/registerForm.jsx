@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { validateRegister } from "../../../common/untils/validates";
 import authAction from "../../../redux/actions/auth/authAction";
 import "../../../pages/registerPage/Register.scss";
-import { ButtonRegister } from "../../../common/components/button/buttonRegister";
-import InputField from "../../../common/components/input/registerInputField";
-import LoadingError from "../../../common/components/error/registerError";
+import { ButtonRegister } from "../../../common/baseComponents/button/buttonRegister";
+import InputField from "../../../common/baseComponents/input/registerInputField";
+import LoadingError from "../../../common/baseComponents/error/registerError";
 import "./registerForm.scss";
 
 function FormRegister() {

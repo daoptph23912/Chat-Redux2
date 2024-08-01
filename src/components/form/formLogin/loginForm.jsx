@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import authAction from "../../../redux/actions/auth/authAction";
 import { validateLogin, handleError } from "../../../common/untils/validates";
-import LoginError from "../../../common/components/error/loginError";
-import LoginInput from "../../../common/components/input/loginInput";
-import { ButtonLogin } from "../../../common/components/button/buttonLogin";
+import LoginError from "../../../common/baseComponents/error/loginError";
+import LoginInput from "../../../common/baseComponents/input/loginInput";
+import { ButtonLogin } from "../../../common/baseComponents/button/buttonLogin";
 import "./loginForm.scss";
 import "../../../pages/loginPage/Login.scss";
 

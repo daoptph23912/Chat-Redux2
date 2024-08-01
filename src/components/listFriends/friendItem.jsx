@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarListFriend from "../../common/components/avatar/avatarListFriend";
+import AvatarListFriend from "../../common/baseComponents/avatar/avatarListFriend";
 import "../../assets/styles/friendItem.scss";
 const FriendItem = ({ friend, onSelectFriend }) => {
   return (

@@ -1,7 +1,7 @@
 import "./Register.scss";
 import { Link } from "react-router-dom";
 import { Image } from "antd";
-import { ImageLogo } from "../../common/components/image/imageLogo";
+import { ImageLogo } from "../../common/baseComponents/image/imageLogo";
 import FormRegister from "../../components/form/formRegister/registerForm";
 import { useTranslation } from "react-i18next";
 

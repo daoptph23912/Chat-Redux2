@@ -2,7 +2,7 @@ import { Image } from "antd";
 import { Link } from "react-router-dom";
 import "./Login.scss";
 import FormLogin from "../../components/form/formLogin/loginForm";
-import { ImageLogo } from "../../common/components/image/imageLogo";
+import { ImageLogo } from "../../common/baseComponents/image/imageLogo";
 import { useTranslation } from "react-i18next";
 import React from "react";
 
