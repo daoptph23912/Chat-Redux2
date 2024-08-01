@@ -1,0 +1,13 @@
+.message-send-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 5px;
+
+  .message-content-send {
+    background-color: #e0f0ff;
+    border-radius: 10px;
+    max-width: 400px;
+  }
+}
