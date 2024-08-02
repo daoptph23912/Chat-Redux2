@@ -27,7 +27,7 @@ const FriendStatus = ({ friend }) => {
         style={{
           width: "40px",
           height: "40px",
-          margin: "3px 10px 0px 3px",
+          margin: "3px 10px 0px 5px",
           borderRadius: "50%",
         }}
         preview={false}
@@ -44,10 +44,10 @@ const FriendStatus = ({ friend }) => {
           borderRadius: "50%",
           backgroundColor: friend.isOnline ? "green" : "red",
           position: "absolute",
-          margin: "3px 0px 0px 26px",
+          margin: "3px 0px 0px 30px",
         }}
       />
-      <p style={{ margin: "5px 0px 0px 0px", fontSize: "21px" }}>
+      <p style={{ margin: "10px 0px 0px 0px", fontSize: "21px" }}>
         {friend.FullName || "None"}
       </p>
     </div>

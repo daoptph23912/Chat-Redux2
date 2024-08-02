@@ -13,7 +13,6 @@ const messagesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null,
       };
     case types.SEND_MESSAGE_SUCCESS:
       return {

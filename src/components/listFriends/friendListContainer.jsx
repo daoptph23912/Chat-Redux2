@@ -15,7 +15,7 @@ const FriendListContainer = ({ onSelectFriend }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (friends.length > 0) {
+    if (Array.isArray(friends) && friends.length > 0) {
       const sortedData = friends.sort((a, b) => {
         if (a.FullName < b.FullName) return -1;
         if (a.FullName > b.FullName) return 1;
@@ -24,9 +24,13 @@ const FriendListContainer = ({ onSelectFriend }) => {
       setFilteredFriends(sortedData);
     }
   }, [friends]);
-
   return (
-    <div style={{ maxHeight: "100vh", overflow: "hidden" }}>
+    <div
+      style={{
+        maxHeight: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <SearchFriend
         listFriend={friends}
         setFilteredFriends={setFilteredFriends}

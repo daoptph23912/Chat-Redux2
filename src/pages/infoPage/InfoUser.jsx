@@ -46,7 +46,7 @@ function InfoUser() {
             <UserAvatar avatar={userInfo.Avatar} />
           </div>
         ) : (
-          <p>Loading user info...</p>
+          <Spin />
         )}
         <ButtonShowModal showModal={showModal} />
       </div>

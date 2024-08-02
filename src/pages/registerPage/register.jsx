@@ -1,25 +1,20 @@
 import "./Register.scss";
 import { Link } from "react-router-dom";
-import { Image } from "antd";
-import { ImageLogo } from "../../common/baseComponents/image/imageLogo";
 import FormRegister from "../../components/form/formRegister/registerForm";
+import { Logo } from "../../assets/svg";
 import { useTranslation } from "react-i18next";
-
+import { RegisterImageContainer } from "../../assets/svg";
 function Register() {
   const { t, i18n } = useTranslation();
   return (
     <>
       <div className="body">
         <header className="logo">
-          <ImageLogo />
+          <Logo />
         </header>
         <div className="content-register">
           <div className="image-register">
-            <Image
-              preview={false}
-              className="image2"
-              src={require("../../assets/images/image2.png")}
-            />
+            <RegisterImageContainer />
           </div>
           <div className="form-register">
             <div className="form-register-header">

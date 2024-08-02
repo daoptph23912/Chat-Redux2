@@ -12,6 +12,7 @@ const UploadButton = ({ onClick }) => {
         height: "25px",
         margin: "8px 5px 0px 5px",
         cursor: "pointer",
+        marginLeft:'13px'
       }}
       onClick={onClick}
     />

@@ -2,8 +2,9 @@ import { message } from "antd";
 import * as types from "./constantsUser";
 import apiRoute from "../../../common/helpers/api";
 const userAction = {
+  
   getInfo: () => async (dispatch) => {
-    dispatch({ type: types.GET_INFO_FAILURE });
+    dispatch({ type: types.GET_INFO_REQUEST });
     try {
       const res = await apiRoute.getInfo();
       dispatch({ type: types.GET_INFO_SUCCESS, payload: res.data.data });
@@ -11,6 +12,7 @@ const userAction = {
       dispatch({ type: types.GET_INFO_FAILURE, payload: e.message });
     }
   },
+
   updateUser: (formData) => async (dispatch) => {
     dispatch({ type: types.UPDATE_USER_REQUEST });
     try {
@@ -21,6 +23,7 @@ const userAction = {
       dispatch({ type: types.UPDATE_USER_FAILURE, payload: e.message });
     }
   },
+
   getListFriends: () => async (dispatch) => {
     dispatch({ type: types.GET_LIST_FRIENDS_REQUEST });
     try {
@@ -33,6 +36,7 @@ const userAction = {
       dispatch({ type: types.GET_LIST_FRIENDS_FAILURE, payload: e.message });
     }
   },
+
   sendMessage: (friendID, content, fileList) => async (dispatch) => {
     dispatch({ type: types.SEND_MESSAGE_REQUEST });
     try {
@@ -42,6 +46,7 @@ const userAction = {
       dispatch({ type: types.SEND_MESSAGE_FAILURE, payload: e.message });
     }
   },
+
   getMessages:
     (friendID, lastTime = null) =>
     async (dispatch) => {

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import UploadButton from "../../../common/baseComponents/image/imageLoader";
+import UploadButton from "../../../common/baseComponents/button/buttonLoader";
 
 const FileUpload = ({ fileList, setFileList }) => {
   const uploadRef = useRef();
@@ -26,7 +26,7 @@ const FileUpload = ({ fileList, setFileList }) => {
       <input
         type="file"
         ref={uploadRef}
-        style={{ display: "none" }}
+        style={{ display: "none",marginLeft:'10px' }}
         multiple
         onChange={handleUploadChange}
       />

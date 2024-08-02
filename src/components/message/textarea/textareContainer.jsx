@@ -5,7 +5,8 @@ import FilePreview from "./filePreview";
 import FileUpload from "./uploadFile";
 import EmojiPickerComponent from "./emojiPicker";
 import "../../../assets/styles/textareaContainer.scss";
-import EmojiToggleButton from "../../../common/baseComponents/image/imageToggleEmoji";
+import EmojiToggleButton from "../../../common/baseComponents/button/buttonEmoji";
+import useClickOutside from "../../../common/hooks/useClickOutSide";
 function MsgSend({
   sendMsg,
   newMessage,
@@ -15,6 +16,7 @@ function MsgSend({
 }) {
   const [showEmoji, setShowEmoji] = useState(false);
 
+  const emojiPickerRef = useClickOutside(() => setShowEmoji(false));
   const handleRemoveImage = (file) => {
     setFileList(fileList.filter((item) => item.uid !== file.uid));
   };
@@ -38,7 +40,14 @@ function MsgSend({
           sendMsg={sendMsg}
         />
         <EmojiToggleButton onClick={() => setShowEmoji(!showEmoji)} />
-        <EmojiPickerComponent clickEmoji={clickEmoji} showEmoji={showEmoji} />
+        {showEmoji && (
+          <div ref={emojiPickerRef}>
+            <EmojiPickerComponent
+              clickEmoji={clickEmoji}
+              showEmoji={showEmoji}
+            />
+          </div>
+        )}{" "}
         <SendButton sendMsg={sendMsg} />
       </div>
     </>

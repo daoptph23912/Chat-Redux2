@@ -1,5 +1,4 @@
-import { Image } from "antd";
-import noMsg from "../../../assets/images/no-msh.png";
+import { NoMsg } from "../../../assets/svg";
 
 function NoMessage() {
   return (
@@ -12,12 +11,10 @@ function NoMessage() {
           margin: "300px 0px 0px 0px",
         }}
       >
-        <Image
-          preview={false}
-          style={{ width: "200px", height: "auto" }}
-          src={noMsg}
-        />
-        <h1>Chưa có tin nhắn </h1>
+        <NoMsg />
+        <p style={{ fontFamily: "roboto", fontSize: "25px" }}>
+          Chưa có tin nhắn{" "}
+        </p>
       </div>
     </>
   );

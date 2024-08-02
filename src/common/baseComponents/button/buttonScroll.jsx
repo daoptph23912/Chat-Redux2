@@ -1,21 +1,20 @@
 import React from "react";
-import { Image } from "antd";
-import imgDropdwn from "../../../assets/images/luotxuong.png";
+import { ButtonDown } from "../../../assets/svg";
 const ScrollButton = ({ scrollToBottom }) => {
   return (
-    <Image
-      preview={false}
-      src={imgDropdwn}
-      style={{
-        position: "fixed",
-        bottom: "80px",
-        right: "10px",
-        width: "45px",
-        height: "45px",
-        cursor: "pointer",
-      }}
-      onClick={scrollToBottom}
-    />
+    <div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "80px",
+          right: "10px",
+          cursor: "pointer",
+        }}
+        onClick={scrollToBottom}
+      >
+        <ButtonDown />
+      </div>
+    </div>
   );
 };
 

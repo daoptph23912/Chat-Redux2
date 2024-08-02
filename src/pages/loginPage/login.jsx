@@ -1,11 +1,13 @@
-import { Image } from "antd";
 import { Link } from "react-router-dom";
 import "./Login.scss";
 import FormLogin from "../../components/form/formLogin/loginForm";
-import { ImageLogo } from "../../common/baseComponents/image/imageLogo";
 import { useTranslation } from "react-i18next";
 import React from "react";
-
+import { GoogleIcon } from "../../assets/svg";
+import { AppleIcon } from "../../assets/svg";
+import { FacebookIcon } from "../../assets/svg";
+import { LoginImageContainer } from "../../assets/svg";
+import { Logo } from "../../assets/svg";
 function Login() {
   const { t, i18n } = useTranslation();
   const newlineToBreak = (text) =>
@@ -20,7 +22,7 @@ function Login() {
     <>
       <div className="body">
         <header className="logo">
-          <ImageLogo />
+          <Logo />
         </header>
         <div className="content-body">
           <div className="text-all">
@@ -31,11 +33,7 @@ function Login() {
             </p>
           </div>
           <div className="image-layout">
-            <Image
-              className="image1"
-              preview={false}
-              src={require("../../assets/images/image1.png")}
-            />
+            <LoginImageContainer />
           </div>
           <div className="form-login">
             <div className="form-login-header">
@@ -64,18 +62,13 @@ function Login() {
             <FormLogin />
             <p className="text-lass">{t("login.orContinueWith")}</p>
             <div className="logo-login">
-              <Image
+              {/* <Image
                 src={require("../../assets/images/gg.png")}
                 preview={false}
-              />
-              <Image
-                src={require("../../assets/images/fb.png")}
-                preview={false}
-              />
-              <Image
-                src={require("../../assets/images/gg.png")}
-                preview={false}
-              />
+              /> */}
+              <GoogleIcon />
+              <AppleIcon />
+              <FacebookIcon />
             </div>
           </div>
         </div>

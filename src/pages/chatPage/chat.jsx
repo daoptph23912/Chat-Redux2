@@ -42,8 +42,15 @@ function Chat() {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          height: "98vh",
+          // borderRight: "1px solid #ddd",
+        }}
+      >
         <FriendListContainer onSelectFriend={handleSelectFriend} />
+        <div style={{ width: "1px", backgroundColor: "#ddd" }} />
         <div style={{ flex: 1 }}>
           {selectedFriend ? (
             <div className="wrapper-one">
@@ -52,7 +59,6 @@ function Chat() {
               </div>
               {hasMsg ? (
                 <>
-                  {" "}
                   <MsgChat
                     messages={messages}
                     selectedFriend={selectedFriend}
@@ -60,7 +66,7 @@ function Chat() {
                 </>
               ) : (
                 <NoMessage />
-              )}{" "}
+              )}
               <MsgSend
                 sendMsg={handleSendMessage}
                 newMessage={newMessage}
