@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { validateRegister } from "../../../common/untils/validates";
-import authAction from "../../../redux/actions/auth/authAction";
+import authAction from "../../../redux/actions/authAction";
 import "../../../pages/registerPage/Register.scss";
-import { ButtonRegister } from "../../../common/baseComponents/button/buttonRegister";
-import InputField from "../../../common/baseComponents/input/registerInputField";
-import LoadingError from "../../../common/baseComponents/error/registerError";
+import { ButtonRegister } from "../../../common/containers/button/buttonRegister";
+import InputField from "../../../common/containers/input/registerInputField";
+import LoadingErrorr from "../../../common/containers/error/registerError";
 import "./registerForm.scss";
 
 function FormRegister() {
@@ -16,60 +15,25 @@ function FormRegister() {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
-  const [fullnameError, setFullnameError] = useState(null);
-  const [accError, setAccError] = useState(null);
-  const [passError, setPassError] = useState(null);
-  const [confirmPassError, setConfirmPassError] = useState(null);
-
   const { register } = authAction;
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const checkRegister = () => {
-    const validationError = validateRegister(fullname, acc, pass, confirmPass);
-    if (validationError) {
-      if (validationError.includes("Họ và tên")) {
-        setFullnameError(validationError);
-      } else if (validationError.includes("Tài khoản")) {
-        setAccError(validationError);
-      } else if (validationError.includes("Mật khẩu")) {
-        setPassError(validationError);
-      } else if (validationError.includes("không trùng khớp")) {
-        setConfirmPassError(validationError);
-      }
-      return false;
-    }
-    return true;
-  };
+  const { user, loading, error } = useSelector((state) => state.auth);
+  const [form] = Form.useForm();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (!checkRegister()) {
-      return;
-    }
-
-    const userData = {
-      FullName: fullname,
-      Username: acc,
-      Password: pass,
-    };
     try {
-      dispatch(register(userData));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleFocus = (field) => {
-    if (field === "fullname") {
-      setFullnameError(null);
-    } else if (field === "acc") {
-      setAccError(null);
-    } else if (field === "pass") {
-      setPassError(null);
-    } else if (field === "confirmPass") {
-      setConfirmPassError(null);
+      const values = await form.validateFields();
+      const userRegister = {
+        FullName: values.fullname,
+        Username: values.acc,
+        Password: values.pass,
+      };
+      dispatch(register(userRegister));
+    } catch (errorInfo) {
+      console.log("Validation Failed:", errorInfo);
     }
   };
 
@@ -81,53 +45,103 @@ function FormRegister() {
 
   return (
     <>
-      <Form className="form-register-post" method="POST">
-        <InputField
+      <Form className="form-register-post" method="POST" form={form}>
+        <Form.Item
           name="fullname"
-          value={fullname}
-          onChange={(e) => setFullname(e.target.value)}
-          placeholder="Nhập họ tên"
-          type="text"
-          autoComplete="FullName"
-          validateStatus={fullnameError ? "error" : ""}
-          help={fullnameError}
-          onFocus={() => handleFocus("fullname")}
-        />
-        <InputField
+          rules={[
+            { required: true, message: "Vui lòng nhập họ tên" },
+            {
+              pattern: /^[\p{L}\s]{8,}$/u,
+              message:
+                "Họ tên phải chứa ít nhất 8 ký tự, bao gồm dấu cách và dấu.",
+            },
+          ]}
+        >
+          <InputField
+            name="fullname"
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
+            placeholder="Nhập họ tên"
+            type="text"
+            autoComplete="FullName"
+          />
+        </Form.Item>
+
+        <Form.Item
           name="acc"
-          value={acc}
-          onChange={(e) => setAcc(e.target.value)}
-          placeholder="Nhập tài khoản"
-          type="text"
-          autoComplete="Username"
-          validateStatus={accError ? "error" : ""}
-          help={accError}
-          onFocus={() => handleFocus("acc")}
-        />
-        <InputField
+          rules={[
+            { required: true, message: "Vui lòng nhập tài khoản" },
+            {
+              min: 6,
+              message: "Tài khoản phải chứa ít nhất 6 ký tự.",
+            },
+          ]}
+        >
+          <InputField
+            name="acc"
+            value={acc}
+            onChange={(e) => setAcc(e.target.value)}
+            placeholder="Nhập tài khoản"
+            type="text"
+            autoComplete="Username"
+          />
+        </Form.Item>
+
+        <Form.Item
           name="pass"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-          placeholder="Nhập mật khẩu"
-          type="password"
-          autoComplete="Password"
-          validateStatus={passError ? "error" : ""}
-          help={passError}
-          onFocus={() => handleFocus("pass")}
-        />
-        <InputField
+          rules={[
+            { required: true, message: "Vui lòng nhập mật khẩu" },
+
+            {
+              min: 6,
+              message: "Mật khẩu phải chứa ít nhất 6 ký tự.",
+            },
+            {
+              pattern: /^(?=.*[!@#$%^&*])/,
+              message: "Mật khẩu phải chứa ít nhất một ký tự đặc biệt.",
+            },
+          ]}
+        >
+          <InputField
+            name="pass"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            placeholder="Nhập mật khẩu"
+            type="password"
+            autoComplete="Password"
+          />
+        </Form.Item>
+
+        <Form.Item
           name="confirmPass"
-          value={confirmPass}
-          onChange={(e) => setConfirmPass(e.target.value)}
-          placeholder="Nhập lại mật khẩu"
-          type="password"
-          autoComplete="confirmPassword"
-          validateStatus={confirmPassError ? "error" : ""}
-          help={confirmPassError}
-          onFocus={() => handleFocus("confirmPass")}
-        />
-        <LoadingError loading={loading} error={error} />
-        <ButtonRegister handleRegister={handleRegister} />
+          dependencies={["pass"]}
+          rules={[
+            { required: true, message: "Vui lòng nhập lại mật khẩu" },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("pass") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("Mật khẩu không khớp!"));
+              },
+            }),
+          ]}
+        >
+          <InputField
+            name="confirmPass"
+            value={confirmPass}
+            onChange={(e) => setConfirmPass(e.target.value)}
+            placeholder="Nhập lại mật khẩu"
+            type="password"
+            autoComplete="confirmPassword"
+          />
+        </Form.Item>
+
+        <LoadingErrorr loading={loading} error={error} />
+
+        <Form.Item>
+          <ButtonRegister handleRegister={handleRegister} />
+        </Form.Item>
       </Form>
     </>
   );

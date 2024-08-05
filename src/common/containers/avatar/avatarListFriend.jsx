@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "antd";
-import apiRoute from "../../helpers/api";
+import apiRoute from "../../../helpers/api";
 import iconUser from "../../../assets/images/user_face.png";
 import { convertToBase64 } from "../convertBase64/convertToBase64";
 

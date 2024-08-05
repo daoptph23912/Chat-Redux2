@@ -1,6 +1,6 @@
 import axios from "axios";
-import iconUser from "../../assets/images/user_face.png";
-import config from "../../config/config";
+import iconUser from "../assets/images/user_face.png";
+import config from "../config/config";
 
 const api = axios.create({ baseURL: config.apiUrl });
 
@@ -20,7 +20,6 @@ const apiRoute = {
       },
     });
   },
-
   register(userData) {
     return api.post("/auth/register", userData, {
       headers: {
@@ -28,7 +27,6 @@ const apiRoute = {
       },
     });
   },
-
   getInfo() {
     return api.get("/user/info", {
       headers: {
@@ -36,7 +34,6 @@ const apiRoute = {
       },
     });
   },
-
   updateUser(formData) {
     return api.post("/user/update", formData, {
       headers: {
@@ -44,7 +41,6 @@ const apiRoute = {
       },
     });
   },
-  
   getListFriends() {
     return api.get("/message/list-friend", {
       headers: {
@@ -52,7 +48,6 @@ const apiRoute = {
       },
     });
   },
-
   sendMessage(friendID, content, fileList) {
     const formData = new FormData();
     formData.append("FriendID", friendID);
@@ -68,7 +63,6 @@ const apiRoute = {
       },
     });
   },
-
   getMessages(friendID, lastTime = null) {
     const url = lastTime
       ? `${config.apiUrl}/message/get-message?FriendID=${friendID}&LastTime=${lastTime}`
@@ -79,7 +73,6 @@ const apiRoute = {
       },
     });
   },
-  
   getAvatarUrl(avatar) {
     return avatar ? `${config.apiUrl}/images/${avatar}` : iconUser;
   },

@@ -1,12 +1,16 @@
 import React from "react";
 import { Spin } from "antd";
 import FriendItem from "./friendItem";
-import "../../assets/styles/friendList.scss"
+import "../../assets/styles/friendList.scss";
+
 const FriendList = ({ filteredFriends, loading, error, onSelectFriend }) => {
-  if (loading) return <Spin />;
-  if (error) return <p>{error}</p>;
-  if (filteredFriends.length > 0) {
-    return (
+  let content;
+  if (loading) {
+    content = <Spin />;
+  } else if (error) {
+    content = <p>{error}</p>;
+  } else if (filteredFriends.length > 0) {
+    content = (
       <div className="list-friends">
         {filteredFriends.map((friend) => (
           <FriendItem
@@ -18,8 +22,10 @@ const FriendList = ({ filteredFriends, loading, error, onSelectFriend }) => {
       </div>
     );
   } else {
-    return <p>No user</p>;
+    content = <p>No user</p>;
   }
+
+  return content;
 };
 
 export default FriendList;

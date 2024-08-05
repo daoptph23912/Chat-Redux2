@@ -1,4 +1,4 @@
-import * as types from "../../actions/auth/constantsAuth.js";
+import * as types from "../../constants/constantsAuth";
 const initialState = {
   loading: false,
   user: null,
@@ -28,9 +28,15 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-      default:
-        return state;
-      }
+    case types.LOGOUT:
+      return {
+        ...state,
+        user: null, 
+      };
+
+    default:
+      return state;
+  }
 };
 
 export default authReducer;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import UserAvatarMenu from "../../common/baseComponents/avatar/avatarMenu";
+import UserAvatarMenu from "../../common/containers/avatar/avatarMenu";
 
 const MenuHeader = ({ info }) => {
   const navigate = useNavigate();

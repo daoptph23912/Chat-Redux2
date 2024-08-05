@@ -62,10 +62,6 @@ function Login() {
             <FormLogin />
             <p className="text-lass">{t("login.orContinueWith")}</p>
             <div className="logo-login">
-              {/* <Image
-                src={require("../../assets/images/gg.png")}
-                preview={false}
-              /> */}
               <GoogleIcon />
               <AppleIcon />
               <FacebookIcon />

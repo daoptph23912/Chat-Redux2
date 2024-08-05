@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component }) => {
-  // const token = localStorage.getItem("token");
-  // return token ? <Component /> : <Navigate to="/" />;
-  const isAuthenticated = useSelector((state) => state.auth.user !== null);
+  const token = localStorage.getItem("token");
+  const isAuthenticated = useSelector(
+    (state) => state.auth.user !== null || token !== null
+  );
+
   return isAuthenticated ? <Component /> : <Navigate to="/" />;
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "antd";
 import iconUser from "../../../assets/images/user_face.png";
-import apiRoute from "../../helpers/api";
+import apiRoute from "../../../helpers/api";
 import { convertToBase64 } from "../convertBase64/convertToBase64";
 
 const UserAvatarMenu = ({ avatar, onClick }) => {

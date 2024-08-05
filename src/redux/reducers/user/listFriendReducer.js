@@ -1,4 +1,5 @@
-import * as types from "../../actions/user/constantsUser";
+import * as types from "../../constants/constantsUser";
+
 const initialState = {
   loading: false,
   friends: [],

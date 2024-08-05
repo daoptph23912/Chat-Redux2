@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en/translation.json";
 import vi from "./locales/vi/translation.json";
 i18n
-  .use(initReactI18next) // kết nối react-i18next với i18next
+  .use(initReactI18next)
   .init({
     resources: {
       en: { translation: en },

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import userAction from "../../redux/actions/user/userActions";
+import userAction from "../../redux/actions/userActions";
 import FriendList from "./friendList";
 import SearchFriend from "../search/searchFriend";
-const { getListFriends } = userAction;
 
+const { getListFriends } = userAction;
 const FriendListContainer = ({ onSelectFriend }) => {
   const { friends, loading, error } = useSelector((state) => state.friends);
   const [filteredFriends, setFilteredFriends] = useState([]);
@@ -16,12 +16,7 @@ const FriendListContainer = ({ onSelectFriend }) => {
 
   useEffect(() => {
     if (Array.isArray(friends) && friends.length > 0) {
-      const sortedData = friends.sort((a, b) => {
-        if (a.FullName < b.FullName) return -1;
-        if (a.FullName > b.FullName) return 1;
-        return 0;
-      });
-      setFilteredFriends(sortedData);
+      setFilteredFriends(friends);
     }
   }, [friends]);
   return (

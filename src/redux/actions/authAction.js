@@ -1,5 +1,5 @@
-import * as types from "./constantsAuth";
-import apiRoute from "../../../common/helpers/api";
+import * as types from "../constants/constantsAuth";
+import apiRoute from "../../helpers/api";
 
 const authAction = {
   login: (userDataLogin) => async (dispatch) => {
@@ -27,6 +27,12 @@ const authAction = {
         payload: error.response.data.message,
       });
     }
+  },
+  logout: () => {
+    return (dispatch) => {
+      dispatch({ type: types.LOGOUT });
+      localStorage.removeItem("token");
+    };
   },
 };
 export default authAction;

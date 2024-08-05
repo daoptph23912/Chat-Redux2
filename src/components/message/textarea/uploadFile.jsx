@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import UploadButton from "../../../common/baseComponents/button/buttonLoader";
+import UploadButton from "../../../common/containers/button/buttonLoader";
 
 const FileUpload = ({ fileList, setFileList }) => {
   const uploadRef = useRef();

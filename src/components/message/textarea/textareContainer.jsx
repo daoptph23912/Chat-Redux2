@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import MessageInput from "./messageInput";
-import SendButton from "../../../common/baseComponents/button/buttonSendMsg";
+import SendButton from "../../../common/containers/button/buttonSendMsg";
 import FilePreview from "./filePreview";
 import FileUpload from "./uploadFile";
 import EmojiPickerComponent from "./emojiPicker";
 import "../../../assets/styles/textareaContainer.scss";
-import EmojiToggleButton from "../../../common/baseComponents/button/buttonEmoji";
+import EmojiToggleButton from "../../../common/containers/button/buttonEmoji";
 import useClickOutside from "../../../common/hooks/useClickOutSide";
 function MsgSend({
   sendMsg,

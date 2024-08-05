@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 
-const LoadingError = ({ loading, error }) => {
+const LoadingErrorr = ({ loading, error }) => {
   return (
     <p className="loading-register">
       {loading ? <Spin /> : error ? <>{error}</> : null}
@@ -8,4 +8,4 @@ const LoadingError = ({ loading, error }) => {
   );
 };
 
-export default LoadingError;
+export default LoadingErrorr;

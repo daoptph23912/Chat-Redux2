@@ -1,41 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image } from "antd";
 import iconUser from "../../../assets/images/user_face.png";
-import apiRoute from "../../helpers/api";
+import apiRoute from "../../../helpers/api";
 import { convertToBase64 } from "../convertBase64/convertToBase64";
-const UserAvatar = ({ avatar }) => {
-  const [avatarUrl, setAvatarUrl] = useState(iconUser);
+
+const MessageAvatar = ({ avatar, messageType }) => {
+  const [avatarSrc, setAvatarSrc] = useState(iconUser);
 
   useEffect(() => {
     const savedAvatar = localStorage.getItem(`avatar_${avatar}`);
     if (savedAvatar) {
-      setAvatarUrl(savedAvatar);
+      setAvatarSrc(savedAvatar);
     } else {
       const url = apiRoute.getAvatarUrl(avatar);
       convertToBase64(url, (base64Image) => {
         localStorage.setItem(`avatar_${avatar}`, base64Image);
-        setAvatarUrl(base64Image);
+        setAvatarSrc(base64Image);
       });
     }
   }, [avatar]);
 
   return (
-    <div>
-      <h2>Image:</h2>
+    messageType !== 1 && (
       <Image
-        src={avatarUrl}
+        src={avatarSrc}
         style={{
-          width: "300px",
-          height: "auto",
-          margin: "10px 0px 40px 0",
+          width: "35px",
+          height: "35px",
+          borderRadius: "50%",
+          margin: "0px 5px 0px 5px",
         }}
+        preview={false}
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = iconUser;
+          setAvatarSrc(iconUser);
         }}
       />
-    </div>
+    )
   );
 };
 
-export default UserAvatar;
+export default MessageAvatar;

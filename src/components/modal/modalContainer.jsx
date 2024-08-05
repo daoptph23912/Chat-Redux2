@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal, message } from "antd";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import userAction from "../../redux/actions/user/userActions";
+import userAction from "../../redux/actions/userActions";
 import UpdateForm from "./updateForm";
 
 const { updateUser } = userAction;

@@ -3,9 +3,9 @@ import FriendListContainer from "../../components/listFriends/friendListContaine
 import { useDispatch, useSelector } from "react-redux";
 import MsgChat from "../../components/message/contentsChat/messageContainer";
 import MsgSend from "../../components/message/textarea/textareContainer";
-import userAction from "../../redux/actions/user/userActions";
+import userAction from "../../redux/actions/userActions";
 import NoMessage from "../../components/message/contentsChat/noMessage";
-import FriendStatus from "../../common/baseComponents/avatar/avatarFriend";
+import FriendStatus from "../../common/containers/avatar/avatarFriend";
 const { getMessages, sendMessage } = userAction;
 function Chat() {
   const [selectedFriend, setSelectedFriend] = useState(null);
@@ -41,46 +41,40 @@ function Chat() {
   };
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          height: "98vh",
-          // borderRight: "1px solid #ddd",
-        }}
-      >
-        <FriendListContainer onSelectFriend={handleSelectFriend} />
-        <div style={{ width: "1px", backgroundColor: "#ddd" }} />
-        <div style={{ flex: 1 }}>
-          {selectedFriend ? (
-            <div className="wrapper-one">
-              <div className="wrapper-two">
-                <FriendStatus friend={selectedFriend} />
-              </div>
-              {hasMsg ? (
-                <>
-                  <MsgChat
-                    messages={messages}
-                    selectedFriend={selectedFriend}
-                  />
-                </>
-              ) : (
-                <NoMessage />
-              )}
-              <MsgSend
-                sendMsg={handleSendMessage}
-                newMessage={newMessage}
-                setNewMessage={setNewMessage}
-                fileList={fileList}
-                setFileList={setFileList}
-              />
+    <div
+      style={{
+        display: "flex",
+        height: "98vh",
+      }}
+    >
+      <FriendListContainer onSelectFriend={handleSelectFriend} />
+      <div style={{ width: "1px", backgroundColor: "#ddd" }} />
+      <div style={{ flex: 1 }}>
+        {selectedFriend ? (
+          <div className="wrapper-one">
+            <div className="wrapper-two">
+              <FriendStatus friend={selectedFriend} />
             </div>
-          ) : (
-            <NoMessage />
-          )}
-        </div>
+            {hasMsg ? (
+              <>
+                <MsgChat messages={messages} selectedFriend={selectedFriend} />
+              </>
+            ) : (
+              <NoMessage />
+            )}
+            <MsgSend
+              sendMsg={handleSendMessage}
+              newMessage={newMessage}
+              setNewMessage={setNewMessage}
+              fileList={fileList}
+              setFileList={setFileList}
+            />
+          </div>
+        ) : (
+          <NoMessage />
+        )}
       </div>
-    </>
+    </div>
   );
 }
 export default Chat;

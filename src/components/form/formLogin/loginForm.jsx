@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Form } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import authAction from "../../../redux/actions/auth/authAction";
-import { validateLogin, handleError } from "../../../common/untils/validates";
-import LoginError from "../../../common/baseComponents/error/loginError";
-import LoginInput from "../../../common/baseComponents/input/loginInput";
-import { ButtonLogin } from "../../../common/baseComponents/button/buttonLogin";
+import authAction from "../../../redux/actions/authAction";
+import LoginError from "../../../common/containers/error/loginError";
+import LoginInput from "../../../common/containers/input/loginInput";
+import { ButtonLogin } from "../../../common/containers/button/buttonLogin";
 import "./loginForm.scss";
 import "../../../pages/loginPage/Login.scss";
 
 function FormLogin() {
   const [acc, setAcc] = useState("Anhdao2002");
   const [pass, setPass] = useState("Anhdao2002");
-  const [accError, setAccError] = useState(null);
-  const [passError, setPassError] = useState(null);
-
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,68 +19,54 @@ function FormLogin() {
   const { user, loading, error } = useSelector((state) => state.auth);
   const { login } = authAction;
 
-  const handleFocus = (field) => {
-    if (field === "acc") {
-      setAccError(null);
-    } else if (field === "pass") {
-      setPassError(null);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const userDataLogin = { Username: acc, Password: pass };
-    const validationError = validateLogin(acc, pass);
-    if (validationError) {
-      if (validationError.includes("Tài khoản")) {
-        setAccError(validationError);
-      } else if (validationError.includes("Mật khẩu")) {
-        setPassError(validationError);
-      }
-      return;
-    }
     dispatch(login(userDataLogin));
   };
 
   useEffect(() => {
-    if (user && !error) {
+    if (user) {
       navigate("/chat");
     }
-  }, [user, error, navigate]);
+  }, [user, navigate]);
 
   return (
     <Form
       className="form-login-post"
       method="POST"
+      onFinish={handleSubmit}
       form={form}
-      type="submit"
-      initialValues={{ acc, pass }}
+      initialValues={{ acc: "Anhdao2002", pass: "Anhdao2002" }}
     >
-      <LoginInput
+      <Form.Item
         name="acc"
-        value={acc}
-        placeholder="Nhập tài khoản"
-        type="text"
-        onChange={(e) => setAcc(e.target.value)}
-        onFocus={() => handleFocus("acc")}
-        validateStatus={accError ? "error" : ""}
-        help={accError}
-      />
-      <LoginInput
+        rules={[{ required: true, message: "Vui lòng nhập tài khoản" }]}
+      >
+        <LoginInput
+          name="acc"
+          placeholder="Nhập tài khoản"
+          type="text"
+          onChange={(e) => setAcc(e.target.value)}
+        />
+      </Form.Item>
+      <Form.Item
         name="pass"
-        value={pass}
-        placeholder="**********"
-        type="password"
-        onChange={(e) => setPass(e.target.value)}
-        onFocus={() => handleFocus("pass")}
-        validateStatus={passError ? "error" : ""}
-        help={passError}
-      />
+        rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
+      >
+        <LoginInput
+          name="pass"
+          placeholder="**********"
+          type="password"
+          onChange={(e) => setPass(e.target.value)}
+        />
+      </Form.Item>
+      <LoginError loading={loading} error={error} />
       <p className="remember-pass">
         <Link to="/">Quên mật khẩu ?</Link>
       </p>
-      <LoginError loading={loading} error={error} />
-      <ButtonLogin handleSubmit={handleSubmit} />
+      <Form.Item>
+        <ButtonLogin handleSubmit={handleSubmit} />
+      </Form.Item>
     </Form>
   );
 }
